@@ -6,31 +6,40 @@
   --text-primary: #1e293b;
   --text-secondary: #64748b;
   --border-color: #e2e8f0;
-  
-  --primary-color: #6366f1; /* Indigo */
+
+  --primary-color: #6366f1;
+  /* Indigo */
   --primary-hover: #4f46e5;
-  --success-color: #10b981; /* Emerald */
-  --danger-color: #ef4444; /* Red */
-  --warning-color: #f59e0b; /* Amber */
-  --info-color: #3b82f6; /* Blue */
-  
+  --success-color: #10b981;
+  /* Emerald */
+  --danger-color: #ef4444;
+  /* Red */
+  --warning-color: #f59e0b;
+  /* Amber */
+  --info-color: #3b82f6;
+  /* Blue */
+
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  
+
   --card-radius: 16px;
   --transition-speed: 0.3s;
 }
 
 /* Dark Theme Variables */
 body.dark-mode {
-  --bg-primary: #0f172a; /* Slate 900 */
-  --bg-secondary: #1e293b; /* Slate 800 */
+  --bg-primary: #0f172a;
+  /* Slate 900 */
+  --bg-secondary: #1e293b;
+  /* Slate 800 */
   --bg-card: #1e293b;
-  --text-primary: #f1f5f9; /* Slate 100 */
-  --text-secondary: #94a3b8; /* Slate 400 */
+  --text-primary: #f1f5f9;
+  /* Slate 100 */
+  --text-secondary: #94a3b8;
+  /* Slate 400 */
   --border-color: #334155;
-  
+
   --primary-color: #818cf8;
   --primary-hover: #6366f1;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
@@ -121,10 +130,21 @@ html {
 }
 
 /* Stat Card Variants with Gradients */
-.stat-card.info { border-left: 4px solid var(--info-color); }
-.stat-card.success { border-left: 4px solid var(--success-color); }
-.stat-card.warning { border-left: 4px solid var(--warning-color); }
-.stat-card.danger { border-left: 4px solid var(--danger-color); }
+.stat-card.info {
+  border-left: 4px solid var(--info-color);
+}
+
+.stat-card.success {
+  border-left: 4px solid var(--success-color);
+}
+
+.stat-card.warning {
+  border-left: 4px solid var(--warning-color);
+}
+
+.stat-card.danger {
+  border-left: 4px solid var(--danger-color);
+}
 
 .stat-card h3 {
   font-size: 0.875rem;
@@ -194,6 +214,36 @@ html {
   background-color: var(--border-color);
 }
 
+.btn-success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #059669;
+  /* Darker emerald */
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+  /* Darker red */
+}
+
+.btn-warning {
+  background-color: var(--warning-color);
+  color: white;
+}
+
+.btn-warning:hover {
+  background-color: #d97706;
+  /* Darker amber */
+}
+
 /* Form Elements */
 .form-group label {
   color: var(--text-primary);
@@ -260,14 +310,39 @@ tr:hover td {
   font-weight: 600;
 }
 
-.badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success-color); }
-.badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger-color); }
-.badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning-color); }
-.badge-secondary { background: var(--bg-secondary); color: var(--text-secondary); }
+.badge-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.badge-danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+}
+
+.badge-warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning-color);
+}
+
+.badge-info {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--info-color);
+}
+
+.badge-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
 
 /* Utilities */
-.text-center { text-align: center; }
-.mt-4 { margin-top: 1rem; }
+.text-center {
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
 
 /* Privacy Badge */
 .privacy-badge {
@@ -301,12 +376,21 @@ tr:hover td {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes slideInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Dark Mode */
@@ -364,9 +448,7 @@ body.dark-mode .alert-info {
   border-color: #0284c7;
 }
 
-body.dark-mode .badge {
-  color: #e0e0e0;
-}
+
 
 body.dark-mode .nav-menu li a:hover {
   background-color: rgba(255, 255, 255, 0.25);
@@ -397,171 +479,9 @@ code {
   padding: 20px;
 }
 
-/* Card Styles */
-.card {
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-/* Button Styles */
-.btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
 
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
 
-.btn:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-.btn-success {
-  background-color: #28a745;
-  color: white;
-}
-
-.btn-success:hover {
-  background-color: #218838;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-/* Form Styles */
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #333;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.form-group textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-/* Table Styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-}
-
-table th,
-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-table th {
-  background-color: #f8f9fa;
-  font-weight: 600;
-  color: #333;
-}
-
-table tr {
-  transition: all 0.2s ease;
-}
-
-table tr:hover {
-  background-color: #f8f9fa;
-  transform: scale(1.01);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Badge Styles */
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.badge-success {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.badge-danger {
-  background-color: #f8d7da;
-  color: #721c24;
-}
-
-.badge-warning {
-  background-color: #fff3cd;
-  color: #856404;
-}
-
-.badge-info {
-  background-color: #d1ecf1;
-  color: #0c5460;
-}
-
-.badge-secondary {
-  background-color: #e2e3e5;
-  color: #383d41;
-}
 
 /* Loading Spinner */
 .loading {
@@ -581,14 +501,20 @@ table tr:hover {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -599,6 +525,7 @@ table tr:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -610,6 +537,7 @@ table tr:hover {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -621,6 +549,7 @@ table tr:hover {
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -628,9 +557,12 @@ table tr:hover {
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
