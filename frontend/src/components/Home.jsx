@@ -62,7 +62,75 @@ function Home() {
         </div>
       </div>
 
-      <div id="product" className="features-section">
+      <div id="product" className="product-section">
+        <div className="product-container">
+          <div className="product-text">
+            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '1.5rem' }}>Comprehensive Compliance Management</h2>
+            <p className="product-description">
+              Labour Compliance Manager is an all-in-one platform designed to simplify the complex landscape of Indian labour laws.
+              We replace chaotic spreadsheets and scattered emails with a unified, digital system of record.
+            </p>
+            <ul className="product-bullets">
+              <li className="product-feature-item">
+                <span className="feature-icon">🚀</span>
+                <div className="feature-content">
+                  <span className="feature-title">Zero-Touch Updates</span>
+                  <span className="feature-desc">Laws change, we update. You stay compliant automatically.</span>
+                </div>
+              </li>
+              <li className="product-feature-item">
+                <span className="feature-icon">🔒</span>
+                <div className="feature-content">
+                  <span className="feature-title">Privacy First</span>
+                  <span className="feature-desc">We collect only what's necessary. Your data stays yours.</span>
+                </div>
+              </li>
+              <li className="product-feature-item">
+                <span className="feature-icon">📊</span>
+                <div className="feature-content">
+                  <span className="feature-title">Real-Time Visibility</span>
+                  <span className="feature-desc">From site-level tasks to board-level reporting in one click.</span>
+                </div>
+              </li>
+              <li className="product-feature-item">
+                <span className="feature-icon">🤝</span>
+                <div className="feature-content">
+                  <span className="feature-title">Collaborative</span>
+                  <span className="feature-desc">Connect HR, Legal, and Finance teams in a single workflow.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="product-visual">
+            <div className="visual-card">
+              <div className="visual-header">
+                <span className="dot red"></span>
+                <span className="dot yellow"></span>
+                <span className="dot green"></span>
+              </div>
+              <div className="visual-content">
+                <div className="visual-row">
+                  <span className="visual-label">Compliance Score</span>
+                  <span className="visual-bar" style={{ width: '92%' }}></span>
+                  <span className="visual-value">92%</span>
+                </div>
+                <div className="visual-row">
+                  <span className="visual-label">Pending Acts</span>
+                  <span className="visual-bar warning" style={{ width: '30%' }}></span>
+                  <span className="visual-value">3</span>
+                </div>
+                <div className="visual-row">
+                  <span className="visual-label">Critical Alerts</span>
+                  <span className="visual-bar success" style={{ width: '0%' }}></span>
+                  <span className="visual-value">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="features" className="features-section">
         <h2 className="section-title">Built for real-world compliance</h2>
         <div className="features-grid">
           <div className="feature-card">

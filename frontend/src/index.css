@@ -52,6 +52,10 @@ body {
   line-height: 1.5;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Layout */
 .container {
   max-width: 1280px;
