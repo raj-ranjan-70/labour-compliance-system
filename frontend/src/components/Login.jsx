@@ -41,10 +41,10 @@ function Login() {
     <div className="auth-split-screen">
       <div className="auth-intro-side">
         <div className="intro-content">
-          <div className="intro-brand">
+          <Link to="/" className="intro-brand" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
             <div className="logo-box">LC</div>
             <h3>Labour Compliance</h3>
-          </div>
+          </Link>
           <h1>Manage Compliance with Confidence.</h1>
           <p>Streamline your organization's labour law obligations, reduce risk, and ensuring 100% compliance with our advanced tracking system.</p>
 
@@ -70,10 +70,10 @@ function Login() {
 
       <div className="auth-form-side">
         <div className="form-wrapper">
-          <div className="auth-header-mobile">
+          <Link to="/" className="auth-header-mobile" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div className="logo-box-mobile">LC</div>
             <h2>Labour Compliance</h2>
-          </div>
+          </Link>
 
           <div className="form-header">
             <h2>Welcome Back</h2>
@@ -131,12 +131,7 @@ function Login() {
               </div>
             </div>
 
-            <div className="form-extras">
-              <label className="checkbox-label">
-                <input type="checkbox" /> Remember me
-              </label>
-              <a href="#" className="forgot-link">Forgot password?</a>
-            </div>
+
 
             <button type="submit" className="pro-btn-primary" disabled={loading}>
               {loading ? 'Authenticating...' : 'Sign In'}
@@ -147,14 +142,7 @@ function Login() {
             Don't have an account? <Link to="/register">Create free account</Link>
           </p>
 
-          <div className="demo-credentials-box">
-            <p className="demo-label">Demo Credentials:</p>
-            {loginType === 'admin' ? (
-              <code className="demo-code">admin@example.com / admin123</code>
-            ) : (
-              <code className="demo-code">employee@example.com / employee123</code>
-            )}
-          </div>
+
         </div>
       </div>
     </div>

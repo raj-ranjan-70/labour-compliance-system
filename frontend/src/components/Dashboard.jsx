@@ -73,10 +73,6 @@ function Dashboard() {
           <h2>Compliance Dashboard</h2>
           <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>Overview of your organization's compliance status</p>
         </div>
-        <div className="privacy-badge">
-          <span>🔒</span>
-          <span>Privacy-First Design</span>
-        </div>
       </div>
 
       <div className="stats-grid">
@@ -182,33 +178,6 @@ function Dashboard() {
             </div>
           </div>
         )}
-      </div>
-
-      <div className="card">
-        <h3>Privacy & Intrusion Minimization</h3>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>This system is designed with privacy-first principles:</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
-          {[
-            'Only essential employee data is collected',
-            'Consent tracking for all data processing activities',
-            'Privacy impact assessments for each compliance item',
-            'Data minimization enforced across all modules',
-            'Transparent reporting on data usage'
-          ].map((item, index) => (
-            <div key={index} style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.75rem',
-              background: 'var(--bg-primary)',
-              borderRadius: '8px',
-              fontSize: '0.9rem'
-            }}>
-              <span style={{ color: 'var(--success-color)' }}>✓</span>
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );

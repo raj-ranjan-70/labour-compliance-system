@@ -11,6 +11,8 @@ import "./App.css";
 
 import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 import { ThemeProvider, useTheme } from "./context/ThemeContext.jsx";
+import { FaLinkedin, FaGithub, FaCheckCircle } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 
 import Home from "./components/Home.jsx";
 import FAQ from "./components/FAQ.jsx";
@@ -93,6 +95,27 @@ function AppContent() {
 
       {isAuthenticated && (
         <footer className="footer">
+          <div className="footer-links">
+            <a href="https://www.linkedin.com/in/rajranjan70" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <FaLinkedin size={24} />
+            </a>
+            <a href="https://github.com/raj-ranjan-70" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <FaGithub size={24} />
+            </a>
+            <a href="https://leetcode.com/u/rajranjan70/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">
+              <SiLeetcode size={24} />
+            </a>
+          </div>
+
+          <div className="privacy-footer-section" style={{ margin: '15px 0', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            <div style={{ fontWeight: '600', marginBottom: '5px' }}>Privacy & Intrusion Minimization</div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FaCheckCircle size={12} color="var(--success-color)" /> Data Minimization</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FaCheckCircle size={12} color="var(--success-color)" /> Consent Tracking</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FaCheckCircle size={12} color="var(--success-color)" /> Transparent Reporting</span>
+            </div>
+          </div>
+
           <p>&copy; 2025 Labour Compliance Manager. Designed for minimal data intrusion.</p>
         </footer>
       )}
