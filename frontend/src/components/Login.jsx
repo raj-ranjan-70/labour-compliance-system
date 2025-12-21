@@ -10,7 +10,7 @@ function Login() {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [loginType, setLoginType] = useState('admin'); // admin or labour
+  // const [loginType, setLoginType] = useState('admin'); // Removed toggle
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -76,26 +76,14 @@ function Login() {
           </Link>
 
           <div className="form-header">
+            <Link to="/" style={{ textDecoration: 'none', color: '#64748b', display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '1rem', fontSize: '0.9rem' }}>
+              <span style={{ fontSize: '1.2em' }}>←</span> Back to Home
+            </Link>
             <h2>Welcome Back</h2>
             <p>Please enter your details to sign in.</p>
           </div>
 
-          <div className="login-type-toggle">
-            <button
-              className={`toggle-btn ${loginType === 'admin' ? 'active' : ''}`}
-              onClick={() => setLoginType('admin')}
-              type="button"
-            >
-              Admin / Manager
-            </button>
-            <button
-              className={`toggle-btn ${loginType === 'labour' ? 'active' : ''}`}
-              onClick={() => setLoginType('labour')}
-              type="button"
-            >
-              Labour / Employee
-            </button>
-          </div>
+          {/* Login Type Toggle Removed as all users use same form */}
 
           <form onSubmit={handleSubmit} className="professional-form">
             {error && <div className="form-error">{error}</div>}

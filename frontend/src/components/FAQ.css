@@ -1,0 +1,81 @@
+/* FAQ Page Styles */
+.faq-container {
+    padding-top: 5rem;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    /* Use theme variable */
+}
+
+.faq-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.faq-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    /* Use theme variable */
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.faq-item {
+    background: var(--card-bg);
+    /* Use theme variable */
+    border: 1px solid var(--border-color);
+    /* Use theme variable */
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.faq-question {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    /* Use theme variable */
+    margin-bottom: 0.75rem;
+}
+
+.faq-answer {
+    color: var(--text-secondary);
+    /* Use theme variable */
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Light Mode Overrides (Default if not dark) */
+body:not(.dark-mode) .faq-container {
+    background-color: #f8fafc;
+}
+
+body:not(.dark-mode) .faq-title {
+    color: #0f172a;
+}
+
+body:not(.dark-mode) .faq-item {
+    background: white;
+    border-color: #e2e8f0;
+}
+
+body:not(.dark-mode) .faq-question {
+    color: #0f172a;
+}
+
+body:not(.dark-mode) .faq-answer {
+    color: #475569;
+}

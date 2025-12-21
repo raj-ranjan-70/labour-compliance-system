@@ -11,7 +11,7 @@ import "./App.css";
 
 import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 import { ThemeProvider, useTheme } from "./context/ThemeContext.jsx";
-import { FaLinkedin, FaGithub, FaCheckCircle, FaCaretDown, FaUser, FaSignOutAlt } from "react-icons/fa"; // Import FaCaretDown, FaUser, FaSignOutAlt
+import { FaLinkedin, FaGithub, FaCheckCircle, FaCaretDown, FaUser, FaSignOutAlt } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 
 import Home from "./components/Home.jsx";
@@ -28,10 +28,9 @@ import EmployeeForm from "./components/EmployeeForm.jsx";
 import AuditList from "./components/AuditList.jsx";
 import AuditForm from "./components/AuditForm.jsx";
 import Reports from "./components/Reports.jsx";
-import Developers from "./components/Developers.jsx"; // Import Developers
-import Profile from "./components/Profile.jsx"; // Import Profile
-
-
+import Developers from "./components/Developers.jsx";
+import Profile from "./components/Profile.jsx";
+import PublicThemeToggle from "./components/PublicThemeToggle.jsx";
 
 
 const ROLES = {
@@ -137,6 +136,7 @@ function AppContent() {
   return (
     <div className="App">
       {isAuthenticated && <NavBar />}
+      {!isAuthenticated && <PublicThemeToggle />}
 
       <div className={isPublicPage ? "landing-content" : "main-content"}>
         <Routes>
@@ -208,7 +208,7 @@ function AppContent() {
 
       {isAuthenticated && (
         <footer className="footer">
-          <div className="footer-links">
+          {/* <div className="footer-links">
             <a href="https://www.linkedin.com/in/rajranjan70" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <FaLinkedin size={24} />
             </a>
@@ -218,7 +218,7 @@ function AppContent() {
             <a href="https://leetcode.com/u/rajranjan70/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">
               <SiLeetcode size={24} />
             </a>
-          </div>
+          </div> */}
 
           <div className="privacy-footer-section" style={{ margin: '15px 0', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
             <div style={{ fontWeight: '600', marginBottom: '5px' }}>Privacy & Intrusion Minimization</div>

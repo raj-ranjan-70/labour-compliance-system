@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css'; // Reusing Home styles for consistency
+import './FAQ.css';
 
 function FAQ() {
     const faqs = [
@@ -47,14 +47,14 @@ function FAQ() {
                 </div>
             </header>
 
-            <div className="features-section" style={{ minHeight: '80vh', paddingTop: '4rem' }}>
-                <h2 className="section-title">Frequently Asked Questions</h2>
-                <div className="workflow-card" style={{ maxWidth: '800px' }}>
+            <div className="faq-container">
+                <div className="faq-content">
+                    <h2 className="faq-title">Frequently Asked Questions</h2>
                     <div className="faq-list">
                         {faqs.map((faq, index) => (
-                            <div key={index} className="faq-item" style={{ marginBottom: '2rem', borderBottom: '1px solid #eee', paddingBottom: '1rem' }}>
-                                <h3 style={{ color: '#0ea5e9', marginBottom: '0.5rem' }}>{faq.question}</h3>
-                                <p style={{ color: '#475569', lineHeight: '1.6' }}>{faq.answer}</p>
+                            <div key={index} className="faq-item">
+                                <h3 className="faq-question">{faq.question}</h3>
+                                <p className="faq-answer">{faq.answer}</p>
                             </div>
                         ))}
                     </div>
