@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { complianceAPI } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 function ComplianceList() {
   const [items, setItems] = useState([]);
@@ -11,6 +12,7 @@ function ComplianceList() {
     priority: '',
   });
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchItems();
@@ -71,9 +73,11 @@ function ComplianceList() {
     <div className="container">
       <div className="page-header">
         <h2>Compliance Items</h2>
-        <button className="btn btn-primary" onClick={() => navigate('/compliance/new')}>
-          + Add New Item
-        </button>
+        {user?.role !== 'viewer' && (
+          <button className="btn btn-primary" onClick={() => navigate('/compliance/new')}>
+            + Add New Item
+          </button>
+        )}
       </div>
 
       <div className="filters">
@@ -138,7 +142,7 @@ function ComplianceList() {
                 <th>Priority</th>
                 <th>Privacy Impact</th>
                 <th>Due Date</th>
-                <th>Actions</th>
+                {user?.role !== 'viewer' && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -162,22 +166,24 @@ function ComplianceList() {
                     </span>
                   </td>
                   <td>{item.dueDate ? new Date(item.dueDate).toLocaleDateString() : '-'}</td>
-                  <td>
-                    <div className="action-buttons">
-                      <button
-                        className="btn btn-secondary"
-                        onClick={() => navigate(`/compliance/edit/${item._id}`)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(item._id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
+                  {user?.role !== 'viewer' && (
+                    <td>
+                      <div className="action-buttons">
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => navigate(`/compliance/edit/${item._id}`)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDelete(item._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

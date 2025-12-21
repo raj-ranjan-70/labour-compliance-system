@@ -193,12 +193,43 @@ function Home() {
       </div>
 
       <footer className="home-footer">
-        <div className="footer-links" style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-          <Link to="/faq" style={{ color: '#94a3b8', textDecoration: 'none' }}>FAQ</Link>
-          <Link to="/labour-laws" style={{ color: '#94a3b8', textDecoration: 'none' }}>Labour Laws</Link>
-          <Link to="/login" style={{ color: '#94a3b8', textDecoration: 'none' }}>Login</Link>
+        <div className="footer-content">
+          <div className="footer-column branding-column">
+            <h3>Labour Compliance Manager</h3>
+            <p className="footer-desc">
+              Simplifying compliance management with privacy-focused tracking, real-time audits, and automated reporting.
+            </p>
+          </div>
+
+          <div className="footer-column">
+            <h4>Quick Links</h4>
+            <div className="footer-links">
+              <Link to="/">Home</Link>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Sign Up</Link>
+            </div>
+          </div>
+
+          <div className="footer-column">
+            <h4>Resources</h4>
+            <div className="footer-links">
+              <Link to="/developers">Meet the Developers</Link>
+              <Link to="/labour-laws">Labour Laws</Link>
+            </div>
+          </div>
+
+          <div className="footer-column">
+            <h4>Help and Support</h4>
+            <div className="footer-links">
+              <Link to="/report-issue">Report Issue</Link>
+              <Link to="/faq">FAQ</Link>
+            </div>
+          </div>
         </div>
-        <p>&copy; 2025 Labour Compliance Manager. All rights reserved.</p>
+
+        <div className="footer-bottom">
+          <p>&copy; 2025 Labour Compliance Manager. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );

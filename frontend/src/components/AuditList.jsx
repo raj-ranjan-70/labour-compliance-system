@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auditAPI } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 function AuditList() {
   const [audits, setAudits] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchAudits();
@@ -56,9 +58,11 @@ function AuditList() {
     <div className="container">
       <div className="page-header">
         <h2>Compliance Audits</h2>
-        <button className="btn btn-primary" onClick={() => navigate('/audits/new')}>
-          + Schedule Audit
-        </button>
+        {user?.role !== 'viewer' && (
+          <button className="btn btn-primary" onClick={() => navigate('/audits/new')}>
+            + Schedule Audit
+          </button>
+        )}
       </div>
 
       <div className="card">
@@ -74,7 +78,7 @@ function AuditList() {
                 <th>Status</th>
                 <th>Score</th>
                 <th>Privacy Compliance</th>
-                <th>Actions</th>
+                {user?.role !== 'viewer' && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -90,26 +94,28 @@ function AuditList() {
                   </td>
                   <td>{audit.overallScore ? `${audit.overallScore}/100` : '-'}</td>
                   <td>
-                    {audit.privacyCompliance?.transparencyScore 
-                      ? `${audit.privacyCompliance.transparencyScore}/10` 
+                    {audit.privacyCompliance?.transparencyScore
+                      ? `${audit.privacyCompliance.transparencyScore}/10`
                       : '-'}
                   </td>
-                  <td>
-                    <div className="action-buttons">
-                      <button
-                        className="btn btn-secondary"
-                        onClick={() => navigate(`/audits/edit/${audit._id}`)}
-                      >
-                        View/Edit
-                      </button>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(audit._id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
+                  {user?.role !== 'viewer' && (
+                    <td>
+                      <div className="action-buttons">
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => navigate(`/audits/edit/${audit._id}`)}
+                        >
+                          View/Edit
+                        </button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDelete(audit._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
