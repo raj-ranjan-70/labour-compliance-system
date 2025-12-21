@@ -204,7 +204,7 @@ function Home() {
           <div className="footer-column">
             <h4>Quick Links</h4>
             <div className="footer-links">
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={() => window.scrollTo(0, 0)}>Home</Link>
               <Link to="/login">Login</Link>
               <Link to="/register">Sign Up</Link>
             </div>
@@ -221,7 +221,6 @@ function Home() {
           <div className="footer-column">
             <h4>Help and Support</h4>
             <div className="footer-links">
-              <Link to="/report-issue">Report Issue</Link>
               <Link to="/faq">FAQ</Link>
             </div>
           </div>
