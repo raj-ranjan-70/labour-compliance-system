@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,7 +11,7 @@ import "./App.css";
 
 import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
 import { ThemeProvider, useTheme } from "./context/ThemeContext.jsx";
-import { FaLinkedin, FaGithub, FaCheckCircle } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaCheckCircle, FaCaretDown, FaUser, FaSignOutAlt } from "react-icons/fa"; // Import FaCaretDown, FaUser, FaSignOutAlt
 import { SiLeetcode } from "react-icons/si";
 
 import Home from "./components/Home.jsx";
@@ -28,11 +28,42 @@ import EmployeeForm from "./components/EmployeeForm.jsx";
 import AuditList from "./components/AuditList.jsx";
 import AuditForm from "./components/AuditForm.jsx";
 import Reports from "./components/Reports.jsx";
+import Developers from "./components/Developers.jsx"; // Import Developers
+import Profile from "./components/Profile.jsx"; // Import Profile
 
+
+
+
+const ROLES = {
+  ADMIN: 'admin',
+  MANAGER: 'manager',
+  AUDITOR: 'auditor',
+  VIEWER: 'viewer'
+};
 
 function NavBar() {
   const { user, logout } = useAuth();
   const { darkMode, toggleDarkMode } = useTheme();
+  const [showDropdown, setShowDropdown] = useState(false);
+  let dropdownTimeout;
+
+  const handleMouseEnter = () => {
+    clearTimeout(dropdownTimeout);
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeout = setTimeout(() => {
+      setShowDropdown(false);
+    }, 250); // 0.25 second delay
+  };
+
+  const getRoleLabel = (role) => {
+    switch (role) {
+      case ROLES.ADMIN: return 'Compliance Officer';
+      default: return role;
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -43,18 +74,54 @@ function NavBar() {
         </div>
         <ul className="nav-menu">
           <li><Link to="/">Dashboard</Link></li>
-          <li><Link to="/compliance">Compliance</Link></li>
-          <li><Link to="/employees">Employees</Link></li>
-          <li><Link to="/audits">Audits</Link></li>
-          <li><Link to="/reports">Reports</Link></li>
+
+          {(user?.role === ROLES.ADMIN || user?.role === ROLES.MANAGER || user?.role === ROLES.VIEWER) && (
+            <>
+              <li><Link to="/compliance">Compliance</Link></li>
+              <li><Link to="/employees">Employees</Link></li>
+            </>
+          )}
+
+          {(user?.role === ROLES.ADMIN || user?.role === ROLES.AUDITOR || user?.role === ROLES.VIEWER) && (
+            <>
+              <li><Link to="/audits">Audits</Link></li>
+              <li><Link to="/reports">Reports</Link></li>
+            </>
+          )}
         </ul>
         <div className="nav-user">
           <button onClick={toggleDarkMode} className="btn-theme" title="Toggle Dark Mode">
             {darkMode ? '☀️' : '🌙'}
           </button>
-          <span className="user-name">{user?.name}</span>
-          <span className="user-role">{user?.role}</span>
-          <button onClick={logout} className="btn-logout">Logout</button>
+
+          <div className="user-dropdown" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
+            <div
+              className="user-info-trigger"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                <span className="user-name">{user?.name}</span>
+                <span className="user-role">{getRoleLabel(user?.role)}</span>
+              </div>
+              <FaCaretDown />
+            </div>
+
+            {showDropdown && (
+              <div className="dropdown-menu">
+                <div className="dropdown-header">
+                  <span className="dropdown-user-name">{user?.name}</span>
+                  <span className="dropdown-user-email">{user?.email}</span>
+                  <span className="dropdown-user-role">{getRoleLabel(user?.role)}</span>
+                </div>
+                <Link to="/profile" className="dropdown-item" onClick={() => setShowDropdown(false)}>
+                  <FaUser style={{ marginRight: '8px' }} /> Edit Profile
+                </Link>
+                <button onClick={logout} className="dropdown-item logout">
+                  <FaSignOutAlt style={{ marginRight: '8px' }} /> Logout
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>
@@ -78,18 +145,64 @@ function AppContent() {
           <Route path="/labour-laws" element={<LabourLaws />} />
           <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" />} />
           <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/dashboard" />} />
+          <Route path="/developers" element={<Developers />} />
 
+          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path="/compliance" element={<PrivateRoute><ComplianceList /></PrivateRoute>} />
-          <Route path="/compliance/new" element={<PrivateRoute><ComplianceForm /></PrivateRoute>} />
-          <Route path="/compliance/edit/:id" element={<PrivateRoute><ComplianceForm /></PrivateRoute>} />
-          <Route path="/employees" element={<PrivateRoute><EmployeeList /></PrivateRoute>} />
-          <Route path="/employees/new" element={<PrivateRoute><EmployeeForm /></PrivateRoute>} />
-          <Route path="/employees/edit/:id" element={<PrivateRoute><EmployeeForm /></PrivateRoute>} />
-          <Route path="/audits" element={<PrivateRoute><AuditList /></PrivateRoute>} />
-          <Route path="/audits/new" element={<PrivateRoute><AuditForm /></PrivateRoute>} />
-          <Route path="/audits/edit/:id" element={<PrivateRoute><AuditForm /></PrivateRoute>} />
-          <Route path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
+
+          <Route path="/compliance" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.MANAGER, ROLES.VIEWER]}>
+              <ComplianceList />
+            </PrivateRoute>
+          } />
+          <Route path="/compliance/new" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.MANAGER]}>
+              <ComplianceForm />
+            </PrivateRoute>
+          } />
+          <Route path="/compliance/edit/:id" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.MANAGER]}>
+              <ComplianceForm />
+            </PrivateRoute>
+          } />
+
+          <Route path="/employees" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.MANAGER, ROLES.VIEWER]}>
+              <EmployeeList />
+            </PrivateRoute>
+          } />
+          <Route path="/employees/new" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.MANAGER]}>
+              <EmployeeForm />
+            </PrivateRoute>
+          } />
+          <Route path="/employees/edit/:id" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.MANAGER]}>
+              <EmployeeForm />
+            </PrivateRoute>
+          } />
+
+          <Route path="/audits" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.AUDITOR, ROLES.VIEWER]}>
+              <AuditList />
+            </PrivateRoute>
+          } />
+          <Route path="/audits/new" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.AUDITOR]}>
+              <AuditForm />
+            </PrivateRoute>
+          } />
+          <Route path="/audits/edit/:id" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.AUDITOR]}>
+              <AuditForm />
+            </PrivateRoute>
+          } />
+
+          <Route path="/reports" element={
+            <PrivateRoute roles={[ROLES.ADMIN, ROLES.AUDITOR, ROLES.VIEWER]}>
+              <Reports />
+            </PrivateRoute>
+          } />
         </Routes>
       </div>
 

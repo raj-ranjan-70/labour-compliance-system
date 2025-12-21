@@ -1,0 +1,142 @@
+.developers-container {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+}
+
+.developers-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.developers-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.developers-header p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.developers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.developer-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.developer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(14, 165, 233, 0.5);
+}
+
+.developer-avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 8px 16px rgba(14, 165, 233, 0.3);
+}
+
+.developer-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.developer-bio {
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.developer-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: auto;
+}
+
+.social-link {
+    color: #94a3b8;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.social-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: scale(1.1);
+}
+
+.social-link.github:hover {
+    color: #fff;
+}
+
+.social-link.linkedin:hover {
+    color: #0ea5e9;
+}
+
+/* Dark Mode Support (if global dark mode toggles class on body) */
+body.light-mode .developers-container {
+    background: #f8fafc;
+}
+
+body.light-mode .developers-header h2 {
+    color: #0f172a;
+}
+
+body.light-mode .developer-card {
+    background: white;
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .developer-name {
+    color: #0f172a;
+}
+
+body.light-mode .developer-bio {
+    color: #475569;
+}
+
+body.light-mode .social-link {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+body.light-mode .social-link:hover {
+    background: #e2e8f0;
+}

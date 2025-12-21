@@ -50,9 +50,9 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       return { success: true };
     } catch (error) {
-      return { 
-        success: false, 
-        message: error.response?.data?.message || 'Login failed' 
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Login failed'
       };
     }
   };
@@ -71,9 +71,9 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       return { success: true };
     } catch (error) {
-      return { 
-        success: false, 
-        message: error.response?.data?.message || 'Registration failed' 
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Registration failed'
       };
     }
   };
@@ -84,10 +84,26 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const updateUser = async (userData) => {
+    try {
+      const response = await axios.put('http://localhost:5001/api/auth/me', userData, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setUser(response.data.user);
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Update failed'
+      };
+    }
+  };
+
   const value = {
     user,
     login,
     register,
+    updateUser, // Add this
     logout,
     loading,
     isAuthenticated: !!user,

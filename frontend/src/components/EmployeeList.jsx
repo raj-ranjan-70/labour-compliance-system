@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { employeeAPI } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 
 function EmployeeList() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchEmployees();
@@ -46,13 +48,15 @@ function EmployeeList() {
     <div className="container">
       <div className="page-header">
         <h2>Employees</h2>
-        <button className="btn btn-primary" onClick={() => navigate('/employees/new')}>
-          + Add Employee
-        </button>
+        {user?.role !== 'viewer' && (
+          <button className="btn btn-primary" onClick={() => navigate('/employees/new')}>
+            + Add Employee
+          </button>
+        )}
       </div>
 
       <div className="alert alert-info">
-        <strong>Privacy Note:</strong> Only minimal employee information is displayed in the list view. 
+        <strong>Privacy Note:</strong> Only minimal employee information is displayed in the list view.
         Full details are accessible only when viewing individual records.
       </div>
 
@@ -68,7 +72,7 @@ function EmployeeList() {
                 <th>Department</th>
                 <th>Position</th>
                 <th>Contract Type</th>
-                <th>Actions</th>
+                {user?.role !== 'viewer' && <th>Actions</th>}
               </tr>
             </thead>
             <tbody>
@@ -81,22 +85,24 @@ function EmployeeList() {
                   <td>
                     <span className="badge badge-info">{employee.contractType}</span>
                   </td>
-                  <td>
-                    <div className="action-buttons">
-                      <button
-                        className="btn btn-secondary"
-                        onClick={() => navigate(`/employees/edit/${employee.id}`)}
-                      >
-                        View/Edit
-                      </button>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(employee.id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
+                  {user?.role !== 'viewer' && (
+                    <td>
+                      <div className="action-buttons">
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => navigate(`/employees/edit/${employee.id}`)}
+                        >
+                          View/Edit
+                        </button>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => handleDelete(employee.id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
