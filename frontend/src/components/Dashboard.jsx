@@ -144,7 +144,7 @@ function Dashboard() {
             <h3>Compliance by Category</h3>
             <div style={{ height: '300px' }}>
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={categoryData}>
+                <BarChart data={categoryData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} vertical={false} />
                   <XAxis
                     dataKey="name"
@@ -152,6 +152,10 @@ function Dashboard() {
                     tick={{ fill: colors.text }}
                     axisLine={{ stroke: colors.grid }}
                     tickLine={{ stroke: colors.grid }}
+                    interval={0}
+                    angle={-45}
+                    textAnchor="end"
+                    height={100}
                   />
                   <YAxis
                     stroke={colors.text}

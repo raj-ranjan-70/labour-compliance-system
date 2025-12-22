@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
     // Find user
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'User not found' });
     }
 
     // Check if user is active
@@ -63,7 +63,7 @@ router.post('/login', async (req, res) => {
     // Verify password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'Invalid password' });
     }
 
     // Update last login
@@ -111,11 +111,11 @@ router.get('/me', authenticate, async (req, res) => {
 router.put('/me', authenticate, async (req, res) => {
   try {
     const { name, department } = req.body;
-    
+
     const user = await User.findById(req.user._id);
     if (name) user.name = name;
     if (department) user.department = department;
-    
+
     await user.save();
 
     res.json({
@@ -139,7 +139,7 @@ router.put('/change-password', authenticate, async (req, res) => {
     const { currentPassword, newPassword } = req.body;
 
     const user = await User.findById(req.user._id);
-    
+
     // Verify current password
     const isMatch = await user.comparePassword(currentPassword);
     if (!isMatch) {
@@ -179,14 +179,14 @@ router.put('/users/:id/role', authenticate, async (req, res) => {
 
     const { role, isActive } = req.body;
     const user = await User.findById(req.params.id);
-    
+
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     if (role) user.role = role;
     if (typeof isActive !== 'undefined') user.isActive = isActive;
-    
+
     await user.save();
 
     res.json({ message: 'User updated successfully' });

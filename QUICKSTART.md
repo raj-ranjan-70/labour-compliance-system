@@ -79,12 +79,13 @@ npm run dev
 
 Once the application is running, use these credentials to log in:
 
-| Role | Email | Password | Access Level |
-|------|-------|----------|--------------|
-| **Admin** | `admin@example.com` | `password123` | Full System Access |
-| **Manager** | `manager@example.com` | `password123` | Compliance Management |
-| **Auditor** | `auditor@example.com` | `password123` | Audit & Reports Only |
-| **Viewer** | `viewer@example.com` | `password123` | Read-only Access |
+### 3. Log In
+Use the following credentials:
+
+- **Admin**: `admin@example.com` / `Password@123`
+- **Manager**: `manager@example.com` / `Password@123`
+- **Auditor**: `auditor@example.com` / `Password@123`
+- **Viewer**: `viewer@example.com` / `Password@123`
 
 ---
 
